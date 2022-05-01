@@ -1,5 +1,6 @@
 graph = {}
 heu = {}
+goal = []
 visited = []
 queue = []
 q = []
@@ -73,8 +74,9 @@ childadd()
 for x in leaf:
     graph[x] = []
 
-print("Enter the goal nodes: ")
-goal = list(input().split())
+for x in graph:
+    if heu[x] == 0:
+        goal.append(x)
 if root in goal:
     print("Root node is the goal node")
 else:
