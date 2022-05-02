@@ -1,6 +1,5 @@
 graph = {}
 heu = {}
-goal = []
 visited = []
 queue = []
 q = []
@@ -19,7 +18,9 @@ def qsort():
         l = i
         for j in range(i+1, len(q)):
             y = heu[q[j]]
-            if min > y:
+            if ch == 1 & min > y:
+                min, l = y, j
+            elif ch == 2 & min < y:
                 min, l = y, j
         q[i], q[l] = q[l], q[i]
 
@@ -74,14 +75,20 @@ childadd()
 for x in leaf:
     graph[x] = []
 
-for x in graph:
-    if heu[x] == 0:
-        goal.append(x)
+ch = int(input("1-> Minimization\n2-> Maximization\nEnter your choice: "))
+
+ele, val = root, heu[root]
+for x in heu:
+    if ch == 1 & heu[x] < val:
+        val, ele = heu[x], x
+    elif ch == 2 & heu[x] > val:
+        val, ele = heu[x], x
+
+goal = ele
 if root in goal:
     print("Root node is the goal node")
 else:
-    print("Following is the Best-First Search")
-    print("Traversal path:")
+    print("Following is the Best-First Search\nTraversal path:")
     bbfs(root)
     for i in visited:
         print(i, end=" ")
