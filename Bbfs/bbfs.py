@@ -75,7 +75,7 @@ childadd()
 for x in leaf:
     graph[x] = []
 
-ch = int(input("1-> Minimization\n2-> Maximization\nEnter your choice: "))
+ch = int(input("\n1-> Minimization\n2-> Maximization\nEnter your choice: "))
 
 ele, val = root, heu[root]
 for x in heu:
@@ -88,7 +88,7 @@ goal = ele
 if root in goal:
     print("Root node is the goal node")
 else:
-    print("Following is the Best-First Search\nTraversal path:")
+    print("\nFollowing is the Best-First Search\nTraversal path:")
     bbfs(root)
     for i in visited:
         print(i, end=" ")
