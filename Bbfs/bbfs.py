@@ -18,9 +18,9 @@ def qsort():
         l = i
         for j in range(i+1, len(q)):
             y = heu[q[j]]
-            if ch == 1 & min > y:
+            if (ch == 1) & (min > y):
                 min, l = y, j
-            elif ch == 2 & min < y:
+            elif (ch == 2) & (min < y):
                 min, l = y, j
         q[i], q[l] = q[l], q[i]
 
@@ -79,9 +79,9 @@ ch = int(input("1-> Minimization\n2-> Maximization\nEnter your choice: "))
 
 ele, val = root, heu[root]
 for x in heu:
-    if ch == 1 & heu[x] < val:
+    if (ch == 1) & (heu[x] < val):
         val, ele = heu[x], x
-    elif ch == 2 & heu[x] > val:
+    elif (ch == 2) & (heu[x] > val):
         val, ele = heu[x], x
 
 goal = ele
