@@ -4,14 +4,14 @@ visited = []
 queue = []
 
 
-def childadd():
+def childadd():  # adds all child nodes in the graph
     for x in parent:
         print("Enter the children of ", x, " node: ")
         child = list(input().split())
         graph[x] = child
 
 
-def cmpr(x):
+def cmpr(x):  # compares the heu values and returns the node with min or max val
     z = x[0]
     for i in range(len(x)):
         if ((ch == 1) & (heu[z] > heu[x[i]])) | ((ch == 2) & (heu[z] > heu[x[i]])):
@@ -19,12 +19,12 @@ def cmpr(x):
     return z
 
 
-def hcl(node):
+def hcl(node):  # hill climbing function
     visited.append(node)
     queue.append(node)
     while queue:
         y = queue.pop()
-        r = cmpr(graph[y])
+        r = cmpr(graph[y])  # r hold the child node of y having min or max val
         if ((ch == 1) & (heu[y] < heu[r])) | ((ch == 2) & (heu[y] > heu[r])):
             return y
         else:
