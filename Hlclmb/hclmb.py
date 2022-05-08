@@ -14,7 +14,7 @@ def childadd():  # adds all child nodes to the graph
 def cmpr(x):  # compares the heu values and returns the node with min or max val
     z = x[0]
     for i in range(len(x)):
-        if ((ch == 1) & (heu[z] > heu[x[i]])) | ((ch == 2) & (heu[z] > heu[x[i]])):
+        if ((ch == 1) & (heu[z] > heu[x[i]])) | ((ch == 2) & (heu[z] < heu[x[i]])):
             z = x[i]
     return z
 
