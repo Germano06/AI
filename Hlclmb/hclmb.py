@@ -2,7 +2,6 @@ graph = {}
 heu = {}
 visited = []
 queue = []
-q = []
 
 
 def childadd():
