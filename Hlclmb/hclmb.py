@@ -4,7 +4,7 @@ visited = []
 queue = []
 
 
-def childadd():  # adds all child nodes in the graph
+def childadd():  # adds all child nodes to the graph
     for x in parent:
         print("Enter the children of ", x, " node: ")
         child = list(input().split())
