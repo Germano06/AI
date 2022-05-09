@@ -2,6 +2,7 @@ graph = {}
 heu = {}
 visited = []
 queue = []
+local = []
 
 
 def childadd():  # adds all child nodes to the graph
@@ -19,15 +20,26 @@ def cmpr(x):  # compares the heu values and returns the node with min or max val
     return z
 
 
+def locl(p, c):
+    # for i in local:
+    #     if i in graph[p]:
+    #         return
+    local.append(c)
+    print("Local", t, "reached at", c)
+
+
 def hcl(node):  # hill climbing function
     visited.append(node)
     queue.append(node)
-    while queue:
-        y = queue.pop()
-        r = cmpr(graph[y])  # r hold the child node of y having min or max val
-        if ((ch == 1) & (heu[y] < heu[r])) | ((ch == 2) & (heu[y] > heu[r])):
-            return y
-        else:
+    if node == ele:
+        return node
+    for y in graph[node]:
+        if graph[node]:
+            r = cmpr(graph[node])
+            if ((ch == 1) & (heu[node] < heu[r])) | ((ch == 2) & (heu[node] > heu[r])):
+                locl(node, r)
+            if heu[node] == heu[r]:
+                print("Plateau reached at", node, "and", r)
             node = hcl(r)
     return node
 
@@ -55,8 +67,18 @@ for x in leaf:
 
 ch = int(input("\n1-> Descend\n2-> Ascend\nEnter your choice: "))
 
+if ch == 1:
+    t = "minima"
+if ch == 2:
+    t = "maxima"
+
+ele, val = root, heu[root]
+for x in heu:
+    if ((ch == 1) & (heu[x] < val)) | ((ch == 2) & (heu[x] > val)):
+        val, ele = heu[x], x
+
 print("Following is the Hill-Climbing Search")
 print("Traversal path:")
 g = hcl(root)
 print(visited)
-print("Goal node", g, "found")
+print("Global", t, "reached at", g, "node")
