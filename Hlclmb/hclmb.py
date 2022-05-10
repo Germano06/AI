@@ -3,6 +3,7 @@ heu = {}
 visited = []
 queue = []
 local = []
+pl = []
 
 
 def srt(lis):
@@ -25,28 +26,39 @@ def childadd():  # adds all child nodes to the graph
 
 
 def locl(c):
-    # for i in local:
-    #     for j in graph:
-    #         if (i in graph[j]) & (c in graph[j]):
-    #             return
-    if c not in local:
-        local.append(c)
-        print("Local", t, "reached at", c)
+    if local:
+        return
+    local.append(c)
+    print("Local", t, "reached at", c)
+
+
+def isPlateau(par):
+    flag = True
+    for n in graph[par]:
+        if heu[n] != heu[par]:
+            flag = False
+            break
+    if (flag) & (par not in pl):
+        pl.append(par)
+        print("Plateau reached at", par)
 
 
 def hcl(node):  # hill climbing function
     visited.append(node)
     queue.append(node)
     if node == ele:
-        print("\nTraversal path:", visited)
-        print("Actual path:", queue)
+        local.append(node)
+        print("Traversal path:", end=" ")
+        for i in visited:
+            print(i, end=" ")
+        print("\nActual path:", end=" ")
+        for i in queue:
+            print(i, end=" ")
         print("\nGlobal", t, "reached at", ele, "node")
-        exit(0)
     for y in graph[node]:
         if ((ch == 1) & (heu[node] < heu[y])) | ((ch == 2) & (heu[node] > heu[y])):
             locl(node)
-        if heu[node] == heu[y]:
-            print("Plateau reached at", node, "and", y)
+        isPlateau(node)
         hcl(y)
         queue.pop()
         if(node != visited[-1]):
@@ -54,7 +66,7 @@ def hcl(node):  # hill climbing function
 
 
 ch = int(input("\n1-> Descend\n2-> Ascend\nEnter your choice: "))
-print("Enter the parent nodes (root node as the 1st node): ")
+print("\nEnter the parent nodes (root node as the 1st node): ")
 parent = list(input().split())
 root = parent[0]
 
@@ -87,3 +99,4 @@ for x in heu:
 
 print("\nFollowing is the Hill-Climbing Search\n")
 hcl(root)
+print()
