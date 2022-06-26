@@ -17,16 +17,14 @@ def isValid(b):
 def mov(m, c, b):
     bank[b][0] -= m
     bank[b][1] -= c
-    f = isValid(b)
-    if f:
-        for i in bank:
-            if i != b:
-                bank[i][0] += m
-                bank[i][1] += c
-                f = isValid(i)
-        if f:
-            bank["A"][2], bank["B"][2] = bank["B"][2], bank["A"][2]
-    return f
+    f1 = isValid(b)
+    for i in bank:
+        if i != b:
+            bank[i][0] += m
+            bank[i][1] += c
+            f2 = isValid(i)
+    bank["A"][2], bank["B"][2] = bank["B"][2], bank["A"][2]
+    return (f1 & f2)
 
 
 def isWin():
@@ -62,6 +60,9 @@ def menu():
                     flC = False
             if m+c > 2:
                 print("\nThe boat can hold max 2")
+                flM, flC = True, True
+            elif m+c == 0:
+                print("\nThe boat has to hold min 1")
                 flM, flC = True, True
             else:
                 flB = False
