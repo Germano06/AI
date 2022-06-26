@@ -71,7 +71,7 @@ def decision(d):
 def menu():
     ch = 1
     count = 0
-    maxMov = 12
+    maxMov = 20
     while (ch != 0):
         print("\n1-> Fill Jug A")
         print("2-> Empty Jug A")
