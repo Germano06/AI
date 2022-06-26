@@ -32,7 +32,7 @@ def decision(d):
 
         if oldVolA > vB-oldVolB:
             newVolA = oldVolA-(vB-oldVolB)
-            newVolB = oldVolB-(newVolA-oldVolA)
+            newVolB = oldVolB+(oldVolA-newVolA)
         else:
             newVolA = 0
             newVolB = oldVolB+oldVolA
@@ -59,7 +59,7 @@ def decision(d):
         oldVolB = jugs['b'][1]
         if oldVolB > vA-oldVolA:
             newVolB = oldVolB-(vA-oldVolA)
-            newVolA = oldVolA-(newVolB-oldVolB)
+            newVolA = oldVolA+(oldVolB-newVolB)
         else:
             newVolA = oldVolB+oldVolA
             newVolB = 0
