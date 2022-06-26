@@ -24,6 +24,9 @@ def decision(d):
         jugs['a'] = [vA, 0]
 
     if d == 3:
+        if jugs['b'][1] == vB:
+            print("\nJug B is already full")
+            return False
         oldVolA = jugs['a'][1]
         oldVolB = jugs['b'][1]
 
@@ -49,6 +52,9 @@ def decision(d):
         jugs['b'] = [vB, 0]
 
     if d == 6:
+        if jugs['a'][1] == vA:
+            print("\nJug A is already full")
+            return False
         oldVolA = jugs['a'][1]
         oldVolB = jugs['b'][1]
         if oldVolB > vA-oldVolA:
