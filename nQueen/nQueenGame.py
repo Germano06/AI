@@ -89,12 +89,12 @@ def tryQueen(row, brd):
                 else:
                     return False
             else:
+                print("Undoing the move")
                 undoMove(row-1, brd)
                 row -= 2
                 undoMove(row, brd)
             showBoard(brd)
         else:
-            print("Undoing the move!!")
             queens['turn'] = not queens['turn']
             row += 1
     return True
